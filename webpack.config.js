@@ -1,3 +1,5 @@
+const Obfuscator = require('webpack-obfuscator');
+
 module.exports = {
   context: __dirname + '/app',
   entry: './entry',
@@ -5,7 +7,7 @@ module.exports = {
     path: __dirname + '/public/javascripts',
     filename: 'bundle.js'
   },
-  mode: 'none',
+  mode: 'production',
   module: {
     rules: [
       {
@@ -20,6 +22,9 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new Obfuscator({rotateUnicodeArray: true})
+  ],
   resolve: {
     fallback: {
       buffer: require.resolve('buffer'),
